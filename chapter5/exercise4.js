@@ -11,9 +11,36 @@ function dominantDirection(text) {
   }).filter(({ name }) => name != "none");
   // If there are no entries left after filtering, assume "ltr" as the default direction.
   if (counted.length == 0) return "ltr";
-  
+
   // Reduce the 'counted' array to find the entry with the highest count.
   return counted.reduce((a, b) => (a.count > b.count ? a : b)).name;
+}
+
+function countBy(items, groupName) {
+  let counts = [];
+  for (let item of items) {
+    let name = groupName(item);
+    let known = counts.findIndex((c) => c.name == name);
+    if (known == -1) {
+      counts.push({ name, count: 1 });
+    } else {
+      counts[known].count++;
+    }
+  }
+  return counts;
+}
+
+function characterScript(code) {
+  for (let script of SCRIPTS) {
+    if (
+      script.ranges.some(([from, to]) => {
+        return code >= from && code < to;
+      })
+    ) {
+      return script;
+    }
+  }
+  return null;
 }
 
 console.log(dominantDirection("Hello!"));

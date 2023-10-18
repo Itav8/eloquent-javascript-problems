@@ -1,5 +1,4 @@
-// Iterable Groups
-
+// Iterable Group
 class Group {
   constructor() {
     this.members = [];
