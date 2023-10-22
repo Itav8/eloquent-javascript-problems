@@ -1,6 +1,6 @@
 // Numbers Again
 // Fill in this regular expression.
-let number = /^[+\-]?(\d+(\.\d*)?|\.\d+)([eE][+\-]?\d+)?$/;
+let number = /^[+\-]?(\d+(\.\d*)?|\.\d+)([e][+\-]?\d+)?$/i;
 // Tests:
 for (let str of [
   "1",
